@@ -1,0 +1,38 @@
+000 (256901.294.000) 2023-02-15 11:58:51 Job submitted from host: <155.230.20.251:9618?addrs=155.230.20.251-9618&alias=cms.knu.ac.kr&noUDP&sock=schedd_4908_0ee9>
+...
+040 (256901.294.000) 2023-02-15 12:01:23 Entered queue to transfer input files
+	Transferring to host: <155.230.21.127:9618?addrs=155.230.21.127-9618+[2407-c000-c024-0-a6bf-1ff-fe84-26f2]-9618&alias=cluster327.knu.ac.kr&noUDP&sock=slot1_8_2927_1610_4255>
+...
+040 (256901.294.000) 2023-02-15 12:02:39 Started transferring input files
+	Seconds spent in queue: 76
+...
+040 (256901.294.000) 2023-02-15 12:02:41 Finished transferring input files
+...
+001 (256901.294.000) 2023-02-15 12:02:42 Job executing on host: <155.230.21.127:9618?addrs=155.230.21.127-9618+[2407-c000-c024-0-a6bf-1ff-fe84-26f2]-9618&alias=cluster327.knu.ac.kr&noUDP&sock=startd_2853_7fc9>
+...
+006 (256901.294.000) 2023-02-15 12:02:49 Image size of job updated: 759740
+	0  -  MemoryUsage of job (MB)
+	0  -  ResidentSetSize of job (KB)
+...
+040 (256901.294.000) 2023-02-15 12:02:52 Started transferring output files
+	Seconds spent in queue: 89
+...
+040 (256901.294.000) 2023-02-15 12:02:54 Finished transferring output files
+...
+005 (256901.294.000) 2023-02-15 12:02:54 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:06, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:06, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	6970308  -  Run Bytes Sent By Job
+	39665616  -  Run Bytes Received By Job
+	6970308  -  Total Bytes Sent By Job
+	39665616  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :    45554    40000   1967498 
+	   Memory (MB)          :        0     1024      1100 
+
+	Job terminated of its own accord at 2023-02-15T03:02:49Z.
+...

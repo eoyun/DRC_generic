@@ -19,18 +19,21 @@ public:
 
   void fillEdeps(DRsimInterface::DRsimEdepData edepData);
   void fillLeaks(DRsimInterface::DRsimLeakageData leakData);
+  void fillOpticalPhoton(DRsimInterface::DRsimPhoton& photon, G4int SoPnumber, G4int CoPnumber);
 
 private:
   void clear();
   void fillHits(DRsimSiPMHit* hit);
   void fillPtcs(G4PrimaryVertex* vtx, G4PrimaryParticle* ptc);
   void queue();
+  G4int ClearFlag;
 
   DRsimInterface::DRsimEventData* fEventData;
   std::map<int, DRsimInterface::DRsimTowerData> fTowerMap;
   std::map<int, DRsimInterface::DRsimEdepData> fEdepMap;
 
   std::vector<G4int> fSiPMCollID;
+  std::vector<DRsimInterface::DRsimPhoton> fPhotonVector;
 };
 
 #endif

@@ -38,6 +38,8 @@ void DRsimEventAction::clear() {
   fSiPMCollID.clear();
   fTowerMap.clear();
   fEdepMap.clear();
+  fPhotonVector.clear();
+  ClearFlag=1;
 }
 
 void DRsimEventAction::EndOfEventAction(const G4Event* event) {
@@ -74,6 +76,10 @@ void DRsimEventAction::EndOfEventAction(const G4Event* event) {
   for (const auto& edepMap : fEdepMap) {
     fEventData->Edeps.push_back(edepMap.second);
   }
+  
+  for (const auto& photonVector : fPhotonVector){
+    fEventData->opticalPhotons.push_back(photonVector);
+  }
 
   for (int iVtx = 0; iVtx < event->GetNumberOfPrimaryVertex(); iVtx++) {
     G4PrimaryVertex* vtx = event->GetPrimaryVertex(iVtx);
@@ -89,6 +95,21 @@ void DRsimEventAction::EndOfEventAction(const G4Event* event) {
   queue();
 
   delete fEventData;
+}
+
+void DRsimEventAction::fillOpticalPhoton(DRsimInterface::DRsimPhoton& Photondata,G4int SoPnumber, G4int CoPnumber) {
+  if (ClearFlag == 1 ){
+    ClearFlag = 0;
+    Photondata.scintOpticalPhotonNumber = SoPnumber;
+    Photondata.cerenOpticalPhotonNumber = CoPnumber;
+    fPhotonVector.push_back(Photondata);
+  } else {
+    Photondata.scintOpticalPhotonNumber += SoPnumber;
+    Photondata.cerenOpticalPhotonNumber += CoPnumber;
+    fPhotonVector.push_back(Photondata);
+  }
+  G4cout<<"the scint photon number is "<<Photondata.scintOpticalPhotonNumber<<G4endl;
+  G4cout<<"the ceren photon number is "<<Photondata.cerenOpticalPhotonNumber<<G4endl;
 }
 
 void DRsimEventAction::fillHits(DRsimSiPMHit* hit) {

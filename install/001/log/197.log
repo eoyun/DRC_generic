@@ -1,0 +1,40 @@
+000 (256901.197.000) 2023-02-15 11:58:50 Job submitted from host: <155.230.20.251:9618?addrs=155.230.20.251-9618&alias=cms.knu.ac.kr&noUDP&sock=schedd_4908_0ee9>
+...
+040 (256901.197.000) 2023-02-15 12:00:13 Entered queue to transfer input files
+	Transferring to host: <155.230.21.126:9618?addrs=155.230.21.126-9618+[2407-c000-c024-0-6e92-bfff-fe34-147e]-9618&alias=cluster326.knu.ac.kr&noUDP&sock=slot1_49_6316_f17a_2669>
+...
+040 (256901.197.000) 2023-02-15 12:01:44 Started transferring input files
+	Seconds spent in queue: 91
+...
+040 (256901.197.000) 2023-02-15 12:01:46 Finished transferring input files
+...
+001 (256901.197.000) 2023-02-15 12:01:47 Job executing on host: <155.230.21.126:9618?addrs=155.230.21.126-9618+[2407-c000-c024-0-6e92-bfff-fe34-147e]-9618&alias=cluster326.knu.ac.kr&noUDP&sock=startd_5469_db8a>
+...
+006 (256901.197.000) 2023-02-15 12:01:54 Image size of job updated: 759736
+	0  -  MemoryUsage of job (MB)
+	0  -  ResidentSetSize of job (KB)
+...
+040 (256901.197.000) 2023-02-15 12:01:59 Entered queue to transfer output files
+...
+040 (256901.197.000) 2023-02-15 12:02:01 Started transferring output files
+	Seconds spent in queue: 108
+...
+040 (256901.197.000) 2023-02-15 12:02:02 Finished transferring output files
+...
+005 (256901.197.000) 2023-02-15 12:02:02 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:05, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:05, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	5714997  -  Run Bytes Sent By Job
+	39665616  -  Run Bytes Received By Job
+	5714997  -  Total Bytes Sent By Job
+	39665616  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :    44328    40000   1892600 
+	   Memory (MB)          :        0     1024      1100 
+
+	Job terminated of its own accord at 2023-02-15T03:01:54Z.
+...

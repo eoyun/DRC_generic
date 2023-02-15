@@ -1,0 +1,42 @@
+000 (256901.229.000) 2023-02-15 11:58:50 Job submitted from host: <155.230.20.251:9618?addrs=155.230.20.251-9618&alias=cms.knu.ac.kr&noUDP&sock=schedd_4908_0ee9>
+...
+040 (256901.229.000) 2023-02-15 12:00:24 Entered queue to transfer input files
+	Transferring to host: <155.230.21.136:9618?addrs=155.230.21.136-9618+[2407-c000-c024-0-f66d-4ff-fe50-ce25]-9618&alias=cluster336.knu.ac.kr&noUDP&sock=slot1_8_5397_6cb5_2840>
+...
+040 (256901.229.000) 2023-02-15 12:02:15 Started transferring input files
+	Seconds spent in queue: 111
+...
+040 (256901.229.000) 2023-02-15 12:02:19 Finished transferring input files
+...
+001 (256901.229.000) 2023-02-15 12:02:20 Job executing on host: <155.230.21.136:9618?addrs=155.230.21.136-9618+[2407-c000-c024-0-f66d-4ff-fe50-ce25]-9618&alias=cluster336.knu.ac.kr&noUDP&sock=startd_4914_2c7a>
+...
+006 (256901.229.000) 2023-02-15 12:02:28 Image size of job updated: 684388
+	70  -  MemoryUsage of job (MB)
+	71480  -  ResidentSetSize of job (KB)
+...
+006 (256901.229.000) 2023-02-15 12:02:37 Image size of job updated: 760724
+	70  -  MemoryUsage of job (MB)
+	71480  -  ResidentSetSize of job (KB)
+...
+040 (256901.229.000) 2023-02-15 12:02:37 Started transferring output files
+	Seconds spent in queue: 133
+...
+040 (256901.229.000) 2023-02-15 12:02:38 Finished transferring output files
+...
+005 (256901.229.000) 2023-02-15 12:02:38 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:07, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:07, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	7002539  -  Run Bytes Sent By Job
+	39665616  -  Run Bytes Received By Job
+	7002539  -  Total Bytes Sent By Job
+	39665616  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :    45591    40000   1920116 
+	   Memory (MB)          :       70     1024      1100 
+
+	Job terminated of its own accord at 2023-02-15T03:02:37Z.
+...

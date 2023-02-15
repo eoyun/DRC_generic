@@ -7,6 +7,8 @@
 #include "G4UserSteppingAction.hh"
 #include "G4LogicalVolume.hh"
 #include "G4Step.hh"
+#include "G4SteppingManager.hh"
+
 
 using namespace std;
 
@@ -20,7 +22,7 @@ private:
   DRsimEventAction* fEventAction;
   DRsimInterface::DRsimEdepData fEdep;
   DRsimInterface::DRsimLeakageData fLeak;
-  
+  DRsimInterface::DRsimPhoton photon;  
   G4VPhysicalVolume* GetMotherTower(G4TouchableHandle touchable) { return touchable->GetVolume(touchable->GetHistoryDepth()-1); }
 
   G4int GetModuleNum(G4String towerName) {

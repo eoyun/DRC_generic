@@ -62,6 +62,7 @@ private:
 
   G4double fFrontL;
   G4double fTowerDepth;
+  G4double fBlockDepth;
   G4double fModuleH;
   G4double fModuleW;
   G4double fFiberUnitH;
@@ -80,6 +81,7 @@ private:
   char name[20];
   G4String moduleName;
   G4Box* module;
+  G4Box* block;
   G4Box* reflector;
   G4Box* pmtg;
   G4Box* pmtcath;
@@ -94,6 +96,7 @@ private:
   G4VSolid* tfiberCoreIntersection;
 
   G4LogicalVolume* ModuleLogical[100];
+  G4LogicalVolume* BlockLogical;
 
   G4LogicalVolume* PMTGLogical[100];
   G4LogicalVolume* PMTcathLogical[100];

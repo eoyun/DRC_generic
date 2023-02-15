@@ -104,6 +104,7 @@ G4VPhysicalVolume* DRsimDetectorConstruction::Construct() {
   fModuleH    = 22.5;
   fModuleW    = 23;
   fFiberUnitH = 1.;
+  fBlockDepth = 0.02;
 
 
   // fRandomSeed = 1;
@@ -155,8 +156,11 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
     moduleName = setModuleName(i);
     
     dimCalc->SetisModule(true);
+    block = new G4Box("Block", (fModuleH/2.) *mm, (fModuleW/2.) *mm, (fBlockDepth/2.) *mm );
     module = new G4Box("Mudule", (fModuleH/2.) *mm, (fModuleW/2.) *mm, (fTowerDepth/2.) *mm );
     ModuleLogical_[i] = new G4LogicalVolume(module,FindMaterial("Copper"),moduleName);
+    BlockLogical = new G4LogicalVolume(block,FindMaterial("Copper"),"testblock");
+    G4VPhysicalVolume* BlockPhysical = new G4PVPlacement(0,G4ThreeVector(0,0,(-fBlockDepth/2.) *mm),BlockLogical,"testblock",worldLogical,false,0,checkOverlaps);
     // G4VPhysicalVolume* modulePhysical = new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
     new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
 

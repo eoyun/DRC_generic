@@ -16,4 +16,4 @@ export ROOT_INCLUDE_PATH=/cvmfs/sft.cern.ch/lcg/releases/LCG_96b/hepmc3/3.1.2/x8
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HEPMC_DIR/lib64:$FASTJET_DIR/lib:$PYTHIA_DIR/lib:$PWD/lib
 
-{path}/DRC_generic/install/bin/DRsim run_ele.mac $1 rootFile_0th
+./bin/DRsim run_gamma.mac $1

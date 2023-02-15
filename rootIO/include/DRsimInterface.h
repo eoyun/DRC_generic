@@ -59,6 +59,13 @@ public:
     int ModuleNum;
   };
 
+  struct DRsimPhoton{
+    DRsimPhoton() {};
+    virtual ~DRsimPhoton() {};
+    int scintOpticalPhotonNumber;
+    int cerenOpticalPhotonNumber;
+  };
+
   struct DRsimLeakageData {
     DRsimLeakageData() {};
     virtual ~DRsimLeakageData() {};
@@ -98,6 +105,7 @@ public:
     std::vector<DRsimEdepData> Edeps;
     std::vector<DRsimLeakageData> leaks;
     std::vector<DRsimGenData> GenPtcs;
+    std::vector<DRsimPhoton> opticalPhotons;
   };
 
 };
