@@ -29,6 +29,7 @@ private:
   G4Material* fFe;
   G4Material* fSi;
   G4Material* fAl;
+  G4Material* fLYSO;
   G4Material* fGlass;
   G4Material* fGelatin;
   G4Material* fMirror;

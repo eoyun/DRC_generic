@@ -329,7 +329,7 @@ namespace ROOT {
       ::DRsimInterface::DRsimLeakageData *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::DRsimInterface::DRsimLeakageData));
       static ::ROOT::TGenericClassInfo 
-         instance("DRsimInterface::DRsimLeakageData", "DRsimInterface.h", 69,
+         instance("DRsimInterface::DRsimLeakageData", "DRsimInterface.h", 70,
                   typeid(::DRsimInterface::DRsimLeakageData), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &DRsimInterfacecLcLDRsimLeakageData_Dictionary, isa_proxy, 4,
                   sizeof(::DRsimInterface::DRsimLeakageData) );
@@ -374,7 +374,7 @@ namespace ROOT {
       ::DRsimInterface::DRsimGenData *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::DRsimInterface::DRsimGenData));
       static ::ROOT::TGenericClassInfo 
-         instance("DRsimInterface::DRsimGenData", "DRsimInterface.h", 84,
+         instance("DRsimInterface::DRsimGenData", "DRsimInterface.h", 85,
                   typeid(::DRsimInterface::DRsimGenData), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &DRsimInterfacecLcLDRsimGenData_Dictionary, isa_proxy, 4,
                   sizeof(::DRsimInterface::DRsimGenData) );
@@ -419,7 +419,7 @@ namespace ROOT {
       ::DRsimInterface::DRsimEventData *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::DRsimInterface::DRsimEventData));
       static ::ROOT::TGenericClassInfo 
-         instance("DRsimInterface::DRsimEventData", "DRsimInterface.h", 99,
+         instance("DRsimInterface::DRsimEventData", "DRsimInterface.h", 100,
                   typeid(::DRsimInterface::DRsimEventData), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &DRsimInterfacecLcLDRsimEventData_Dictionary, isa_proxy, 4,
                   sizeof(::DRsimInterface::DRsimEventData) );

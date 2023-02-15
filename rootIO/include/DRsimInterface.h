@@ -56,6 +56,7 @@ public:
     float EdepEle;
     float EdepGamma;
     float EdepCharged;
+    float EdepModule;
     int ModuleNum;
   };
 

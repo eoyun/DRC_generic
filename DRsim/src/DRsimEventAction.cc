@@ -164,6 +164,7 @@ void DRsimEventAction::fillEdeps(DRsimInterface::DRsimEdepData edepData) {
     towerIter->second.EdepEle += edepData.EdepEle;
     towerIter->second.EdepGamma += edepData.EdepGamma;
     towerIter->second.EdepCharged += edepData.EdepCharged;
+    towerIter->second.EdepModule += edepData.EdepModule;
   }
 }
 

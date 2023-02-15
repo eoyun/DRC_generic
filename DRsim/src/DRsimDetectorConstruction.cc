@@ -27,7 +27,7 @@ using namespace std;
 G4ThreadLocal DRsimMagneticField* DRsimDetectorConstruction::fMagneticField = 0;
 G4ThreadLocal G4FieldManager* DRsimDetectorConstruction::fFieldMgr = 0;
 
-int DRsimDetectorConstruction::fNofRow = 1;
+int DRsimDetectorConstruction::fNofRow = 3;
 int DRsimDetectorConstruction::fNofModules = fNofRow * fNofRow;
 
 DRsimDetectorConstruction::DRsimDetectorConstruction()
@@ -100,11 +100,11 @@ G4VPhysicalVolume* DRsimDetectorConstruction::Construct() {
   G4VPhysicalVolume* worldPhysical = new G4PVPlacement(0,G4ThreeVector(),worldLogical,"worldPhysical",0,false,0,checkOverlaps);
 
   fFrontL     = 0.;
-  fTowerDepth = 100.; 
+  fTowerDepth = 300.; 
   fModuleH    = 22.5;
   fModuleW    = 23;
   fFiberUnitH = 1.;
-  fBlockDepth = 0.02;
+  fBlockDepth = 0.2;
 
 
   // fRandomSeed = 1;
@@ -152,15 +152,15 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
                                             std::vector<G4LogicalVolume*> fiberUnitIntersection_[], std::vector<G4LogicalVolume*> fiberCladIntersection_[], std::vector<G4LogicalVolume*> fiberCoreIntersection_[], 
                                             std::vector<DRsimInterface::DRsimModuleProperty>& ModuleProp_) {
 
+  block = new G4Box("Block",fNofRow * (fModuleH/2.) *mm,fNofRow * (fModuleW/2.) *mm, (fBlockDepth/2.) *mm );
+  BlockLogical = new G4LogicalVolume(block,FindMaterial("Copper"),"testblock");
+  G4VPhysicalVolume* BlockPhysical = new G4PVPlacement(0,G4ThreeVector(0,0,(-fBlockDepth/2.) *mm),BlockLogical,"testblock",worldLogical,false,0,checkOverlaps);
   for (int i = 0; i < fNofModules; i++) {    
     moduleName = setModuleName(i);
     
     dimCalc->SetisModule(true);
-    block = new G4Box("Block", (fModuleH/2.) *mm, (fModuleW/2.) *mm, (fBlockDepth/2.) *mm );
     module = new G4Box("Mudule", (fModuleH/2.) *mm, (fModuleW/2.) *mm, (fTowerDepth/2.) *mm );
     ModuleLogical_[i] = new G4LogicalVolume(module,FindMaterial("Copper"),moduleName);
-    BlockLogical = new G4LogicalVolume(block,FindMaterial("Copper"),"testblock");
-    G4VPhysicalVolume* BlockPhysical = new G4PVPlacement(0,G4ThreeVector(0,0,(-fBlockDepth/2.) *mm),BlockLogical,"testblock",worldLogical,false,0,checkOverlaps);
     // G4VPhysicalVolume* modulePhysical = new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
     new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
 

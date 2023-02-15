@@ -58,6 +58,10 @@ void DRsimMaterials::CreateMaterials() {
   G4Element* N  = new G4Element("Nitrogen",symbol="N" , z=7., a=14.01*g/mole);
   G4Element* O  = new G4Element("Oxygen"  ,symbol="O" , z=8., a=16.00*g/mole);
   G4Element* F  = new G4Element("Fluorine",symbol="F" , z=9., a=18.9984*g/mole);
+  G4Element* Si = new G4Element("Silicon" ,symbol="Si", z= 14., a= 28.085*g/mole);
+  G4Element* Y  = new G4Element("Yttrium" ,symbol="Y" , z= 39., a= 88.905*g/mole);
+  G4Element* Ce = new G4Element("Cerium"  ,symbol="Ce", z= 58., a= 140.116*g/mole);
+  G4Element* Lu = new G4Element("Lutetium",symbol="Lu", z= 71., a= 174.9668*g/mole);
 
   fCu = new G4Material("Copper"  , z = 29., a = 63.546 * g/mole, density = 8.96  * g/cm3);
   fW  = new G4Material("Tungsten", z = 74., a = 183.84 * g/mole, density = 19.30 * g/cm3);
@@ -93,6 +97,13 @@ void DRsimMaterials::CreateMaterials() {
   fGelatin->AddElement(N, natoms=31);
   fGelatin->AddElement(O, natoms=39);
 
+  fLYSO = new G4Material("LYSO", density=7.25*g/cm3, ncomponents=5);
+  fLYSO->AddElement(Lu, 73.856*perCent);
+  fLYSO->AddElement(Y , 1.975*perCent);
+  fLYSO->AddElement(Si, 6.240*perCent);
+  fLYSO->AddElement(O , 17.773*perCent);
+  fLYSO->AddElement(Ce, 0.156*perCent);
+
   G4MaterialPropertiesTable* mpAir;
   G4MaterialPropertiesTable* mpPS;
   G4MaterialPropertiesTable* mpPMMA;
@@ -103,6 +114,7 @@ void DRsimMaterials::CreateMaterials() {
   G4MaterialPropertiesTable* mpFilterSurf;
   G4MaterialPropertiesTable* mpMirror;
   G4MaterialPropertiesTable* mpMirrorSurf;
+  G4MaterialPropertiesTable* mpLYSO;
 
   G4double opEn[] = { // from 900nm to 300nm with 25nm step
     1.37760*eV, 1.41696*eV, 1.45864*eV, 1.50284*eV, 1.54980*eV, 1.59980*eV, 1.65312*eV, 1.71013*eV,
@@ -181,13 +193,14 @@ void DRsimMaterials::CreateMaterials() {
   fSiPMSurf = new G4OpticalSurface("SiPMSurf",glisur,polished,dielectric_metal);
   fSiPMSurf->SetMaterialPropertiesTable(mpSiPM);
 
-  G4double filterEff[nEnt] = {
+ /* G4double filterEff[nEnt] = {
     0.913, 0.913, 0.913, 0.913, 0.913, 0.913, 0.913, 0.913, 
     0.913, 0.912, 0.910, 0.907, 0.904, 0.899, 0.884, 0.692, 
     0.015, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
-  };
+  };*/
   
   G4double filterRef[nEnt]; std::fill_n(filterRef,nEnt,0.);
+  G4double filterEff[nEnt]; std::fill_n(filterEff,nEnt,1.);
   G4double RI_gel[nEnt]; std::fill_n(RI_gel,nEnt,1.52);
   mpFilter = new G4MaterialPropertiesTable();
   mpFilter->AddProperty("RINDEX",opEn,RI_gel,nEnt);
@@ -206,4 +219,22 @@ void DRsimMaterials::CreateMaterials() {
   mpMirrorSurf->AddProperty("REFLECTIVITY",opEn,MirrorRef,nEnt);
   fMirrorSurf = new G4OpticalSurface("MirrorSurf",glisur,polished,dielectric_metal);
   fMirrorSurf->SetMaterialPropertiesTable(mpMirrorSurf);
+
+  //--- LYSO ---
+  G4double RI_LYSO[nEnt]; std::fill_n(RI_LYSO, nEnt, 1.81);
+  G4double Abslength_LYSO[nEnt]; std::fill_n(Abslength_LYSO, nEnt, 42*cm);
+  G4double scintFast_LYSO[nEnt] = {
+    0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+    0.00, 0.00, 0.00, 0.03, 0.07, 0.12, 0.16, 0.32,
+    0.50, 0.68, 0.92, 0.97, 0.50, 0.07, 0.00, 0.00, 0.00
+  };
+  mpLYSO = new G4MaterialPropertiesTable();
+  mpLYSO->AddProperty("RINDEX",opEn,RI_LYSO,nEnt);
+  mpLYSO->AddProperty("ABSLENGTH",opEn,Abslength_LYSO,nEnt);
+  mpLYSO->AddProperty("FASTCOMPONENT",opEn,scintFast_LYSO,nEnt);
+  mpLYSO->AddConstProperty("SCINTILLATIONYIELD",33200./MeV);
+  mpLYSO->AddConstProperty("RESOLUTIONSCALE",2.0);
+  mpLYSO->AddConstProperty("FASTTIMECONSTANT",36*ns);
+  fLYSO->SetMaterialPropertiesTable(mpLYSO);
+
 }

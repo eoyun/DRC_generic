@@ -74,3 +74,4 @@ s/open OGL 600x600-0+0
 /gui/addButton viewer "Update scene" "/vis/scene/notifyHandlers"
 /gui/addIcon "Run beam on" user_icon "/run/beamOn 1" run.png
 /vis/set/touchable worldPhysical 0
+/run/beamOn 1
