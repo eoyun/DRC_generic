@@ -13,17 +13,22 @@
 class DRsimSiPMSD : public G4VSensitiveDetector {
 public:
   DRsimSiPMSD(const G4String& name, const G4String& hitsCollectionName, DRsimInterface::DRsimModuleProperty ModuleProp);
+  DRsimSiPMSD(const G4String& name, const G4String& hitsCollectionName, std::pair<int,int> xy);
   virtual ~DRsimSiPMSD();
 
   virtual void Initialize(G4HCofThisEvent* HCE);
   virtual G4bool ProcessHits(G4Step* aStep, G4TouchableHistory*);
   virtual void EndOfEvent(G4HCofThisEvent* HCE);
+  void IsFrontFunction(){fIsFront=1;}
+  void IsCrystalFunction(){fIsCrystal=1;}
 
 private:
   DRsimSiPMHitsCollection* fHitCollection;
   G4int fHCID;
   G4int fWavBin;
   G4int fTimeBin;
+  G4int fIsFront;
+  G4int fIsCrystal;
   G4float fWavlenStart;
   G4float fWavlenEnd;
   G4float fTimeStart;

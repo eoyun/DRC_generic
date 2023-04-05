@@ -19,8 +19,8 @@ DRsimFilterParameterisation::DRsimFilterParameterisation(const G4int numx, const
 
     // if ( !RecoInterface::IsCerenkov(column,row) ) {
     if ( true ) {
-      fXFilter.push_back( -25.*mm/2 + column*1.*mm + 0.5*mm );
-      fYFilter.push_back( -25.*mm/2 + row*1.*mm + 0.5*mm );
+      fXFilter.push_back( -20.*mm/2 + column*1.*mm + 0.5*mm );
+      fYFilter.push_back( -1.*mm/2 + row*1.*mm + 0.5*mm );
     }
   }
   fNumx = numx;

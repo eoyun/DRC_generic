@@ -9,6 +9,8 @@ DRsimSiPMHit::DRsimSiPMHit(G4int wavBin, G4int timeBin)
   fSiPMpos(G4ThreeVector(0.,0.,0.)),
   fMuduleNum(999),
   fTowerXY(std::make_pair(-1,-1)),
+  fFront(0),
+  fCrystal(0),
   fInnerR(0.),
   fTowerH(0.),
   fSiPMXY(std::make_pair(-1,-1)),
@@ -25,6 +27,8 @@ DRsimSiPMHit::DRsimSiPMHit(const DRsimSiPMHit &right)
   fSiPMpos = right.fSiPMpos;
   fMuduleNum = right.fMuduleNum;
   fTowerXY = right.fTowerXY;
+  fFront = right.fFront;
+  fCrystal = right.fCrystal;
   fInnerR = right.fInnerR;
   fTowerH = right.fTowerH;
   fSiPMXY = right.fSiPMXY;
@@ -38,6 +42,8 @@ const DRsimSiPMHit& DRsimSiPMHit::operator=(const DRsimSiPMHit &right) {
   fSiPMpos = right.fSiPMpos;
   fMuduleNum = right.fMuduleNum;
   fTowerXY = right.fTowerXY;
+  fFront = right.fFront;
+  fCrystal = right.fCrystal;
   fInnerR = right.fInnerR;
   fTowerH = right.fTowerH;
   fSiPMXY = right.fSiPMXY;

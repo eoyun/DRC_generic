@@ -39,6 +39,11 @@ public:
   void SetTowerXY(DRsimInterface::hitXY xy) { fTowerXY = xy; }
   DRsimInterface::hitXY GetTowerXY() const { return fTowerXY; }
 
+  G4int GetIsFront() {return fFront;}
+  void SetFront() {fFront=1;}
+
+  G4int GetIsCrystal() {return fCrystal;}
+  void SetCrystal() {fCrystal=1;}
   // void SetTowerInnerR(G4float innerR) { fInnerR = innerR; }
   // G4float GetTowerInnerR() const { return fInnerR; }
 
@@ -62,6 +67,8 @@ private:
   DRsimInterface::hitXY fTowerXY;
   G4float fInnerR;
   G4float fTowerH;
+  G4int fFront;
+  G4int fCrystal;
   DRsimInterface::hitXY fSiPMXY;
   DRsimInterface::DRsimWavlenSpectrum fWavlenSpectrum;
   DRsimInterface::DRsimTimeStruct fTimeStruct;

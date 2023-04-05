@@ -11,7 +11,7 @@ using namespace std;
 
 DRsimSiPMSD::DRsimSiPMSD(const G4String& name, const G4String& hitsCollectionName, DRsimInterface::DRsimModuleProperty ModuleProp)
 : G4VSensitiveDetector(name), fHitCollection(0), fHCID(-1), fWavBin(60), fTimeBin(600),
-fModuleNum(-1), fWavlenStart(900.), fWavlenEnd(300.), fTimeStart(10.), fTimeEnd(70.)
+fModuleNum(-1), fWavlenStart(900.), fWavlenEnd(300.), fTimeStart(10.), fTimeEnd(70.), fIsFront(0),fIsCrystal(0)
 {
   collectionName.insert(hitsCollectionName);
   fWavlenStep = (fWavlenStart-fWavlenEnd)/(float)fWavBin;
@@ -19,6 +19,15 @@ fModuleNum(-1), fWavlenStart(900.), fWavlenEnd(300.), fTimeStart(10.), fTimeEnd(
 
   fModuleNum = ModuleProp.ModuleNum;
   fTowerXY = ModuleProp.towerXY;
+}
+DRsimSiPMSD::DRsimSiPMSD(const G4String& name, const G4String& hitsCollectionName, std::pair<int,int> xy)
+: G4VSensitiveDetector(name), fHitCollection(0), fHCID(-1), fWavBin(60), fTimeBin(600),
+fModuleNum(-1), fWavlenStart(900.), fWavlenEnd(300.), fTimeStart(10.), fTimeEnd(70.), fIsFront(0),fIsCrystal(0)
+{
+  collectionName.insert(hitsCollectionName);
+  fWavlenStep = (fWavlenStart-fWavlenEnd)/(float)fWavBin;
+  fTimeStep = (fTimeEnd-fTimeStart)/(float)fTimeBin;
+
 }
 
 DRsimSiPMSD::~DRsimSiPMSD() {}
@@ -57,6 +66,9 @@ G4bool DRsimSiPMSD::ProcessHits(G4Step* step, G4TouchableHistory*) {
 
   if (hit==NULL) {
     hit = new DRsimSiPMHit(fWavBin,fTimeBin);
+    if (fIsFront==1) hit->SetFront();
+    if (fIsCrystal==1) hit->SetCrystal();
+
     hit->SetSiPMnum(SiPMnum);
     hit->SetModuleNum(fModuleNum);
     hit->SetTowerXY(fTowerXY);

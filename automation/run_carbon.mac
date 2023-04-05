@@ -11,15 +11,16 @@
 /DRsim/generator/theta 0.
 /DRsim/generator/phi 0.
 
-/DRsim/generator/x0 0
-/DRsim/generator/y0 0
-/DRsim/generator/z0 -50
+/DRsim/generator/x0 0 mm
+/DRsim/generator/y0 0 mm
+/DRsim/generator/z0 -50 mm
 
-/DRsim/generator/randx 10
-/DRsim/generator/randy 10
+/DRsim/generator/randx 1 cm
+/DRsim/generator/randy 1 cm
 /DRsim/generator/randz 0
 
-/gun/particle gamma
-/gun/energy 1332 keV
-/run/beamOn 1
+/gun/particle ion
+/gun/ion 6 12 0 0
+/gun/energy 400 MeV
+/run/beamOn 10
 

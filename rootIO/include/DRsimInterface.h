@@ -33,6 +33,8 @@ public:
     int SiPMnum;
     int x;    // plate num
     int y;    // fiber num on the plate
+    int Front;
+    int Crystal;
     threeVector pos;
     DRsimTimeStruct timeStruct;
     DRsimWavlenSpectrum wavlenSpectrum;

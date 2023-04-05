@@ -59,6 +59,16 @@ private:
   G4VisAttributes* fVisAttrBlue;
   G4VisAttributes* fVisAttrGray;
   G4VisAttributes* fVisAttrGreen;
+  
+  G4double cry_fTowerH;
+  G4double cry_fSiPMH;
+  G4double cry_fTowerX;
+  G4double cry_fAirX;
+  G4double cry_fSiPMX;
+  G4double cry_fFilterT;
+  G4int cry_fTotalN;
+  G4int cry_fTowerN;
+  G4double cry_fTotalX;
 
   G4double fFrontL;
   G4double fTowerDepth;
@@ -137,7 +147,8 @@ private:
   std::vector<G4bool> fFiberWhich;
 
   G4LogicalVolume* worldLogical;
-
+  G4LogicalVolume* cry_fWaferlogical;
+  G4LogicalVolume* cry_fWaferlogicalFront;
   G4String setModuleName(int i) {
     return "Module" + std::to_string(i);
   }

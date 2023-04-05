@@ -1,0 +1,14 @@
+universe = vanilla
+executable = condor.sh
+initialdir = 028
+arguments = $(ProcId)
+output = log/$(ProcId).out
+error = log/$(ProcId).err
+log = log/$(ProcId).log
+request_memory = 5 GB
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/condor.sh, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/init.mac, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/run_muon.mac, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/run_ele.mac, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/run_gamma.mac, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/run_proton.mac,/u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/run_carbon.mac, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/bin, /u/user/eoyun/scratch/DRC_calib/23.02.13/DRC_generic/install/lib
+
+queue 500
