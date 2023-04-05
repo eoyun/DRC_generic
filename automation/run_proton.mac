@@ -15,11 +15,11 @@
 /DRsim/generator/y0 0
 /DRsim/generator/z0 -50
 
-/DRsim/generator/randx 10
-/DRsim/generator/randy 10
+/DRsim/generator/randx 5
+/DRsim/generator/randy 5
 /DRsim/generator/randz 0
 
 /gun/particle proton
-/gun/energy 20 MeV
-/run/beamOn 1
+/gun/energy 400 MeV
+/run/beamOn 10
 
