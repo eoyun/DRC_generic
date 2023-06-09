@@ -33,6 +33,7 @@ public:
 
   static int fNofModules;
   static int fNofRow;
+  static int fNofColumn;
 
 private:
   void DefineCommands();

@@ -8,13 +8,13 @@
 /run/initialize
 /run/verbose 1
 
-/DRsim/generator/theta 1.5
-/DRsim/generator/phi 1
-/DRsim/generator/x0 -3.93
-/DRsim/generator/y0 2.618
+/DRsim/generator/theta 90.
+/DRsim/generator/phi 90.
+/DRsim/generator/x0 0.
+/DRsim/generator/y0 -10. cm
 /DRsim/generator/z0 0
-/DRsim/generator/randx 10
-/DRsim/generator/randy 10
+/DRsim/generator/randx 10 mm
+/DRsim/generator/randz 10 mm
 
 /gun/particle e-
 /gun/energy 20 GeV

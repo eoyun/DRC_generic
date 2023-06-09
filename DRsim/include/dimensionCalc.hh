@@ -30,6 +30,7 @@ public:
   G4double GetY(G4int i);
   G4double GetZ(G4int i);
   G4ThreeVector GetOrigin_PMTG(G4int i);
+  G4ThreeVector GetOrigin_PMTG_even(G4int i);
   G4double GetX_PMTG(G4int i);
   G4double GetY_PMTG(G4int i);
   G4double GetZ_PMTG(G4int i);
