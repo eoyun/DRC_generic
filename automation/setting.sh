@@ -9,13 +9,13 @@ function set_vars()
     sed -i "${INITIAL_DIR_ROW}s/=.*/= $SAVE_DIR/" condor.sub
     
     TRANSFER_INPUT_ROW=`awk '/transfer_input_files/{ print NR; exit}' condor.sub`
-    sed -i "${TRANSFER_INPUT_ROW}s?=.*?= ${CEPC_BUILD_DIR}/condor.sh, ${CEPC_BUILD_DIR}/init.mac, ${CEPC_BUILD_DIR}/run_muon.mac, ${CEPC_BUILD_DIR}/run_ele.mac, ${CEPC_BUILD_DIR}/run_gamma.mac, ${CEPC_BUILD_DIR}/run_proton.mac,${CEPC_BUILD_DIR}/run_carbon.mac, ${CEPC_BUILD_DIR}/bin, ${CEPC_BUILD_DIR}/lib?" condor.sub
+    sed -i "${TRANSFER_INPUT_ROW}s?=.*?= ${CEPC_BUILD_DIR}/condor.sh, ${CEPC_BUILD_DIR}/init.mac, ${CEPC_BUILD_DIR}/run_muon.mac, ${CEPC_BUILD_DIR}/run_ele.mac, ${CEPC_BUILD_DIR}/run_gamma.mac, ${CEPC_BUILD_DIR}/run_proton.mac,${CEPC_BUILD_DIR}/run_carbon.mac, ${CEPC_BUILD_DIR}/DRsim?" condor.sub
 
     #SOURCE_ROW=`awk '/source/{ print NR; exit }' condor_exe.sh`
     #sed -i "${SOURCE_ROW}s?.*?source ${CEPC_BUILD_DIR}/HTCondor_env.sh?" condor_exe.sh
             
     EXE_ROW=`awk '/DRsim/{ print NR; exit }' condor.sh`
-    sed -i "${EXE_ROW}s?.*?\./bin/DRsim ${MACRO} \$1?" condor.sh
+    sed -i "${EXE_ROW}s?.*?\./DRsim ${MACRO} \$1?" condor.sh
 
     condor_submit condor.sub
 }

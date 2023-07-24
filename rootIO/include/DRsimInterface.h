@@ -76,6 +76,25 @@ public:
     int pdgId;
   };
 
+  struct DRsimStepData {
+    DRsimStepData() {};
+    virtual ~DRsimStepData() {};
+  
+ 
+    float E;
+    float Edep;
+    float px;
+    float py;
+    float pz;
+    float vx;
+    float vy;
+    float vz;
+    float vt;
+    int pdgId;
+    int trackId;
+  };
+
+
   struct DRsimGenData {
     DRsimGenData() {};
     virtual ~DRsimGenData() {};
@@ -99,8 +118,12 @@ public:
     std::vector<DRsimTowerData> towers;
     std::vector<DRsimEdepData> Edeps;
     std::vector<DRsimLeakageData> leaks;
+    std::vector<DRsimStepData> steps;
     std::vector<DRsimGenData> GenPtcs;
   };
+
+
+
 
 };
 

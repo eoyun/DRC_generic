@@ -181,13 +181,16 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
   G4ThreeVector *towerPosition = new G4ThreeVector(0.*m,0.,0.5*m);
   G4RotationMatrix* cry_towerRot= new G4RotationMatrix(0.*deg,-90.*deg,-90.*deg);  
 
-  G4VSolid* cry_towerEnvSolid = new G4Box("crystaltowerEnvSolid",cry_fAirX+cry_fTowerX/2.,cry_fAirX+cry_fTowerX/2.,cry_fSiPMH/2.+cry_fTowerH/2.);
+  //G4VSolid* cry_towerEnvSolid = new G4Box("crystaltowerEnvSolid",cry_fAirX+cry_fTowerX/2.,cry_fAirX+cry_fTowerX/2.,cry_fSiPMH/2.+cry_fTowerH/2.);
+  G4VSolid* cry_towerEnvSolid = new G4Box("crystaltowerEnvSolid",cry_fAirX+cry_fTowerX/2.,cry_fAirX+cry_fTowerX/2.,cry_fSiPMH+cry_fTowerH/2.);
   G4LogicalVolume* cry_towerEnvLogical = new G4LogicalVolume(cry_towerEnvSolid,FindMaterial("G4_AIR"),"crystaltowerEnvLogical");
-  new G4PVPlacement(cry_towerRot,dimCalc->GetOrigin(0)+G4ThreeVector(0.*m,0.0615*m,0*m),cry_towerEnvLogical,"crystaltowerEnvPhysical",worldLogical,false,0);
+  new G4PVPlacement(cry_towerRot,dimCalc->GetOrigin(0)+G4ThreeVector(0.*m,0.0618*m,0*m),cry_towerEnvLogical,"crystaltowerEnvPhysical",worldLogical,false,0,checkOverlaps);
+  //new G4PVPlacement(cry_towerRot,dimCalc->GetOrigin(0)+G4ThreeVector(0.*m,0.06165*m,0*m),cry_towerEnvLogical,"crystaltowerEnvPhysical",worldLogical,false,0,checkOverlaps);
 
   G4VSolid* cry_towerSolid = new G4Box("crystaltowerSolid",cry_fTowerX/2.,cry_fTowerX/2.,cry_fTowerH/2.);
-  G4LogicalVolume* cry_towerLogical = new G4LogicalVolume(cry_towerSolid,FindMaterial("G4_AIR"),"crystaltowerLogical");
-  G4VPhysicalVolume* cry_towerPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,-cry_fSiPMH/2.),cry_towerLogical,"crystaltowerPhysical",cry_towerEnvLogical,false,0);
+  G4LogicalVolume* cry_towerLogical = new G4LogicalVolume(cry_towerSolid,FindMaterial("LYSO"),"crystaltowerLogical");
+  G4VPhysicalVolume* cry_towerPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,0.),cry_towerLogical,"crystaltowerPhysical",cry_towerEnvLogical,false,0);
+  //G4VPhysicalVolume* cry_towerPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,-cry_fSiPMH/2.),cry_towerLogical,"crystaltowerPhysical",cry_towerEnvLogical,false,0);
 
   cry_towerLogical->SetVisAttributes(fVisAttrBlue);
 
@@ -206,7 +209,8 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
   G4LogicalVolume* cry_windowLogical = new G4LogicalVolume(cry_windowSolid,FindMaterial("Glass"),"crystalwindowLogical");
   G4VPhysicalVolume* cry_windowPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,-cry_fFilterT/2.),cry_windowLogical,"crystalwindowPhysical",cry_sipmEnvLogical,false,0);
 
-  G4VPhysicalVolume* cry_sipmEnvPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,(cry_fTowerH)/2.),cry_sipmEnvLogical,"crystalsipmEnvPhysical",cry_towerEnvLogical,false,0);
+  G4VPhysicalVolume* cry_sipmEnvPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,(cry_fTowerH+cry_fSiPMH)/2.),cry_sipmEnvLogical,"crystalsipmEnvPhysical",cry_towerEnvLogical,false,0);
+  //G4VPhysicalVolume* cry_sipmEnvPhysical = new G4PVPlacement(0,G4ThreeVector(0.,0.,(cry_fTowerH)/2.),cry_sipmEnvLogical,"crystalsipmEnvPhysical",cry_towerEnvLogical,false,0);
 
   //G4VSolid* cry_sipmEnvSolidFront = new G4Box("crystalsipmEnvSolidFront",cry_fSiPMX/2.,cry_fSiPMX/2.,cry_fSiPMH/2.);
   //G4LogicalVolume* cry_sipmEnvLogicalFront = new G4LogicalVolume(cry_sipmEnvSolidFront,FindMaterial("G4_Galactic"),"crystalsipmEnvLogicalFront");
@@ -229,7 +233,9 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
 
   for (int i = 0; i < fNofModules; i++) {    
     moduleName = setModuleName(i);
-    
+    //G4cout<<"#############################"<<G4endl; 
+    //G4cout<<dimCalc->GetOrigin(i).getY()<<G4endl; 
+    //G4cout<<"#############################"<<G4endl; 
     dimCalc->SetisModule(true);
     module = new G4Box("Mudule", (fModuleH/2.) *mm, (fModuleW/2.) *mm, (fTowerDepth/2.) *mm );
     ModuleLogical_[i] = new G4LogicalVolume(module,FindMaterial("G4_Galactic"),moduleName);

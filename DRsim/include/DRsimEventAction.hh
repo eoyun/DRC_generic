@@ -18,6 +18,7 @@ public:
   virtual void EndOfEventAction(const G4Event*);
 
   void fillEdeps(DRsimInterface::DRsimEdepData edepData);
+  void fillSteps(DRsimInterface::DRsimStepData stepData);
   void fillLeaks(DRsimInterface::DRsimLeakageData leakData);
 
 private:

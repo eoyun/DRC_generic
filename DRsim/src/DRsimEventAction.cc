@@ -31,7 +31,7 @@ void DRsimEventAction::BeginOfEventAction(const G4Event*) {
     fSiPMCollID.push_back(sdManager->GetCollectionID("ModuleC"+std::to_string(i)));
   }
   fSiPMCollID.push_back(sdManager->GetCollectionID("SiPMSDBCCry"));
-  fSiPMCollID.push_back(sdManager->GetCollectionID("SiPMSDFCCry"));
+  //fSiPMCollID.push_back(sdManager->GetCollectionID("SiPMSDFCCry"));
   fEventData = new DRsimInterface::DRsimEventData();
 }
 
@@ -53,16 +53,16 @@ void DRsimEventAction::EndOfEventAction(const G4Event* event) {
 
   G4int totSDNum = hce->GetNumberOfCollections();
 
-  G4cout<< "tot SD Num is "<< totSDNum <<G4endl;
+ // G4cout<< "tot SD Num is "<< totSDNum <<G4endl;
   for (int iSD = 0; iSD < totSDNum; iSD++) {
-    G4cout<< "dbg SD HC "<<iSD <<G4endl;
+    //G4cout<< "dbg SD HC "<<iSD <<G4endl;
     DRsimSiPMHitsCollection* sipmHC = 0;
 
-    G4cout<< "dbg SD GetHC" <<G4endl;
+    //G4cout<< "dbg SD GetHC" <<G4endl;
     if (hce) {
       if(fSiPMCollID[iSD]>=0) sipmHC = (DRsimSiPMHitsCollection*)(hce->GetHC(fSiPMCollID[iSD]));
     }
-    G4cout<< "dbg SD Getsipm" <<G4endl;
+    //G4cout<< "dbg SD Getsipm" <<G4endl;
 
     if (sipmHC) {
       G4int SiPMs = sipmHC->entries();
@@ -71,17 +71,17 @@ void DRsimEventAction::EndOfEventAction(const G4Event* event) {
       }
     }
   }
-  G4cout<< "dbg tower" <<G4endl;
+  //G4cout<< "dbg tower" <<G4endl;
 
   for (const auto& towerMap : fTowerMap) {
     fEventData->towers.push_back(towerMap.second);
   }
-  G4cout<< "dbg edep" <<G4endl;
+  //G4cout<< "dbg edep" <<G4endl;
 
   for (const auto& edepMap : fEdepMap) {
     fEventData->Edeps.push_back(edepMap.second);
   }
-  G4cout<< "dbg vtx" <<G4endl;
+  //G4cout<< "dbg vtx" <<G4endl;
 
   for (int iVtx = 0; iVtx < event->GetNumberOfPrimaryVertex(); iVtx++) {
     G4PrimaryVertex* vtx = event->GetPrimaryVertex(iVtx);
@@ -97,7 +97,7 @@ void DRsimEventAction::EndOfEventAction(const G4Event* event) {
   queue();
 
   delete fEventData;
-  G4cout<< "dbg" <<G4endl;
+  //G4cout<< "dbg" <<G4endl;
 }
 
 void DRsimEventAction::fillHits(DRsimSiPMHit* hit) {
@@ -155,6 +155,10 @@ void DRsimEventAction::fillEdeps(DRsimInterface::DRsimEdepData edepData) {
     towerIter->second.EdepGamma += edepData.EdepGamma;
     towerIter->second.EdepCharged += edepData.EdepCharged;
   }
+}
+
+void DRsimEventAction::fillSteps(DRsimInterface::DRsimStepData stepData) {
+  fEventData->steps.push_back(stepData);
 }
 
 void DRsimEventAction::fillLeaks(DRsimInterface::DRsimLeakageData leakData) {

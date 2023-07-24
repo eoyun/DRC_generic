@@ -20,6 +20,7 @@ private:
   DRsimEventAction* fEventAction;
   DRsimInterface::DRsimEdepData fEdep;
   DRsimInterface::DRsimLeakageData fLeak;
+  DRsimInterface::DRsimStepData fstep;
   
   G4VPhysicalVolume* GetMotherTower(G4TouchableHandle touchable) { return touchable->GetVolume(touchable->GetHistoryDepth()-1); }
 
