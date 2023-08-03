@@ -105,7 +105,7 @@ G4VPhysicalVolume* DRsimDetectorConstruction::Construct() {
   G4LogicalVolumeStore::GetInstance()->Clean();
   G4SolidStore::GetInstance()->Clean();
 
-  checkOverlaps = false;
+  checkOverlaps = true;
 
   G4VSolid* worldSolid             = new G4Box("worldBox",10.*m,10.*m,10.*m);
   worldLogical                     = new G4LogicalVolume(worldSolid,FindMaterial("G4_Galactic"),"worldLogical");
@@ -126,9 +126,12 @@ G4VPhysicalVolume* DRsimDetectorConstruction::Construct() {
   doPMT       = true;
 
   fiberUnit   = new G4Box("fiber_SQ", (fFiberUnitH/2) *mm, (1./2) *mm, (fTowerDepth/2) *mm);
-  fiberClad   = new G4Tubs("fiber",  0, clad_C_rMax, fTowerDepth/2., 0 *deg, 360. *deg);   // S is the same
-  fiberCoreC  = new G4Tubs("fiberC", 0, core_C_rMax, fTowerDepth/2., 0 *deg, 360. *deg);
-  fiberCoreS  = new G4Tubs("fiberS", 0, core_S_rMax, fTowerDepth/2., 0 *deg, 360. *deg);
+  //fiberClad   = new G4Tubs("fiber",  0, clad_C_rMax, fTowerDepth/2., 0 *deg, 360. *deg);   // S is the same
+  //fiberCoreC  = new G4Tubs("fiberC", 0, core_C_rMax, fTowerDepth/2., 0 *deg, 360. *deg);
+  //fiberCoreS  = new G4Tubs("fiberS", 0, core_S_rMax, fTowerDepth/2., 0 *deg, 360. *deg);
+  fiberClad   = new G4Box("fiber",   clad_C_rMax * mm,clad_C_rMax * mm, fTowerDepth/2. * mm);   // S is the same
+  fiberCoreC  = new G4Box("fiberC",  core_C_rMax * mm,core_C_rMax * mm, fTowerDepth/2. * mm);
+  fiberCoreS  = new G4Box("fiberS",  core_S_rMax * mm,core_S_rMax * mm, fTowerDepth/2. * mm);
 
   dimCalc = new dimensionCalc();
   dimCalc->SetFrontL(fFrontL);

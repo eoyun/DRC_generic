@@ -96,9 +96,12 @@ private:
   G4Box* pmtcath;
 
   G4Box* fiberUnit;
-  G4Tubs* fiberClad;
-  G4Tubs* fiberCoreS;
-  G4Tubs* fiberCoreC;
+  //G4Tubs* fiberClad;
+  //G4Tubs* fiberCoreS;
+  //G4Tubs* fiberCoreC;
+  G4Box* fiberClad;
+  G4Box* fiberCoreS;
+  G4Box* fiberCoreC;
   
   G4VSolid* tfiberUnitIntersection;
   G4VSolid* tfiberCladIntersection;
