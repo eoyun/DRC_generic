@@ -27,7 +27,7 @@ using namespace std;
 G4ThreadLocal DRsimMagneticField* DRsimDetectorConstruction::fMagneticField = 0;
 G4ThreadLocal G4FieldManager* DRsimDetectorConstruction::fFieldMgr = 0;
 
-int DRsimDetectorConstruction::fNofRow = 2;
+int DRsimDetectorConstruction::fNofRow = 4;
 int DRsimDetectorConstruction::fNofColumn = 1;
 int DRsimDetectorConstruction::fNofModules = fNofRow * fNofColumn;
 
@@ -187,7 +187,7 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
   //G4VSolid* cry_towerEnvSolid = new G4Box("crystaltowerEnvSolid",cry_fAirX+cry_fTowerX/2.,cry_fAirX+cry_fTowerX/2.,cry_fSiPMH/2.+cry_fTowerH/2.);
   G4VSolid* cry_towerEnvSolid = new G4Box("crystaltowerEnvSolid",cry_fAirX+cry_fTowerX/2.,cry_fAirX+cry_fTowerX/2.,cry_fSiPMH+cry_fTowerH/2.);
   G4LogicalVolume* cry_towerEnvLogical = new G4LogicalVolume(cry_towerEnvSolid,FindMaterial("G4_AIR"),"crystaltowerEnvLogical");
-  new G4PVPlacement(cry_towerRot,dimCalc->GetOrigin(0)+G4ThreeVector(0.*m,0.0618*m,0*m),cry_towerEnvLogical,"crystaltowerEnvPhysical",worldLogical,false,0,checkOverlaps);
+  new G4PVPlacement(cry_towerRot,dimCalc->GetOrigin(0)+G4ThreeVector(0.*m,0.0638*m,0*m),cry_towerEnvLogical,"crystaltowerEnvPhysical",worldLogical,false,0,checkOverlaps);
   //new G4PVPlacement(cry_towerRot,dimCalc->GetOrigin(0)+G4ThreeVector(0.*m,0.06165*m,0*m),cry_towerEnvLogical,"crystaltowerEnvPhysical",worldLogical,false,0,checkOverlaps);
 
   G4VSolid* cry_towerSolid = new G4Box("crystaltowerSolid",cry_fTowerX/2.,cry_fTowerX/2.,cry_fTowerH/2.);
@@ -245,20 +245,19 @@ void DRsimDetectorConstruction::ModuleBuild(G4LogicalVolume* ModuleLogical_[],
     // G4VPhysicalVolume* modulePhysical = new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
     //new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
     //new G4PVPlacement(0,*towerPosition,ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
-    if(i%2==1) new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
-    if(i%2==0 )new G4PVPlacement(fiberRot,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
+    if(i>1) new G4PVPlacement(0,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
+    else new G4PVPlacement(fiberRot,dimCalc->GetOrigin(i),ModuleLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
 
     if ( doPMT ) {
       dimCalc->SetisModule(false);  
       pmtg = new G4Box("PMTG", (fModuleH/2.) *mm, (fModuleW/2.) *mm, (PMTT+filterT)/2. *mm );
       PMTGLogical_[i]  = new G4LogicalVolume(pmtg,FindMaterial("G4_AIR"),moduleName);
       //new G4PVPlacement(0,dimCalc->GetOrigin_PMTG(i),PMTGLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
-      if(i%2==1)new G4PVPlacement(0,dimCalc->GetOrigin_PMTG(i),PMTGLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
-      if(i%2==0)new G4PVPlacement(towerRot,dimCalc->GetOrigin_PMTG_even(i),PMTGLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
+      if(i>1) new G4PVPlacement(0,dimCalc->GetOrigin_PMTG(i),PMTGLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
+      else new G4PVPlacement(towerRot,dimCalc->GetOrigin_PMTG_even(i),PMTGLogical_[i],moduleName,worldLogical,false,0,checkOverlaps);
     }
 
     FiberImplement(i,ModuleLogical_,fiberUnitIntersection_,fiberCladIntersection_,fiberCoreIntersection_);
-
     DRsimInterface::DRsimModuleProperty ModulePropSingle;
     ModulePropSingle.towerXY   = fTowerXY;
     ModulePropSingle.ModuleNum = i;

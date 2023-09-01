@@ -12,7 +12,7 @@
 /DRsim/generator/phi 90.
 
 /DRsim/generator/x0 0
-/DRsim/generator/y0 - 10 cm
+/DRsim/generator/y0 -10 cm
 /DRsim/generator/z0 0
 
 /DRsim/generator/randx 1 cm
