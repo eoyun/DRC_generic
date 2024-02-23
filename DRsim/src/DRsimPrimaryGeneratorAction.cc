@@ -137,4 +137,8 @@ void DRsimPrimaryGeneratorAction::DefineCommands() {
   G4GenericMessenger::Command& randyCmd = fMessenger->DeclareMethodWithUnit("randy","mm",&DRsimPrimaryGeneratorAction::SetRandY,"y width of beam");
   randyCmd.SetParameterName("randy",true);
   randyCmd.SetDefaultValue("0.");
+  
+  G4GenericMessenger::Command& randzCmd = fMessenger->DeclareMethodWithUnit("randz","mm",&DRsimPrimaryGeneratorAction::SetRandZ,"z width of beam");
+  randyCmd.SetParameterName("randz",true);
+  randyCmd.SetDefaultValue("0.");
 }
